@@ -11,6 +11,8 @@
 
 你可通过 `Maven` 或者 `Gradle` 下载 `PPCom Android SDK`.
 
+> 0.0.2版本可不是固定的哟
+
 * Maven
 
 ```xml
@@ -24,7 +26,7 @@
 
 * Gradle
 
-```groovy
+```gradle
 compile 'com.ppmessage:ppcomsdk:0.0.2'
 ```
 
@@ -58,9 +60,11 @@ compile 'com.ppmessage:ppcomsdk:0.0.2'
       public void onCreate() {
           super.onCreate();
           PPComSDK sdk = PPComSDK.getInstance();
-          sdk.init(new PPComSDKConfiguration
-              .Builder(this)
+          sdk.init(new PPComSDKConfiguration.Builder()
+              .setContext(this)
               .setAppUUID(PPMESSAGE_APP_UUID)
+              .setApiKey(PPCOM_API_KEY)
+              .setApiSecret(PPCOM_API_SECRET)
               .build());
       }
   }
@@ -77,3 +81,5 @@ compile 'com.ppmessage:ppcomsdk:0.0.2'
       }
   }
 ```
+
+> sdk.update() 可以在startup conversation 之前进行配置更新，更新的数据只能包括 user_fullname, user_icon, ent_user_data, jpush_registration_id，其它数据只能在初始化的时候指定。并且update一定是sdk.init()成功之后才能执行。

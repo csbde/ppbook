@@ -11,4 +11,4 @@ PPMessage 是一个开源项目，源代码托管在[Github](https://github.com/
 
 ### 帮助和支持
 
-如有任何问题，请访问[PPMessage官网](https://ppmessage.com)向我们提问，或者在[github.com/PPMESSAGE](https://github.com/PPMESSAGE/ppmessage.git)提交问题。
+如有任何问题，请访问[PPMessage官网](https://ppmessage.com)，使用 PPMessage 向我们在线提问，这些提问会推送到我们开发人员的手机上，或者在[github.com/PPMESSAGE](https://github.com/PPMESSAGE/ppmessage.git)提交问题。

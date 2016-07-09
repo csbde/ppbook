@@ -685,46 +685,6 @@ user_fullname          | string    | 用户全称，如果需要创建用户，�
 ```
 
 
-#### 获取对话历史消息
-获取对话中的历史消息，可以按页(`page_size, page_offset`)获取；也可以按照消息id范围(`since_id, max_id`)获取。
-```
-POST /PP_GET_HISTORY_MESSAGE
-```
-
-api_level:
-```
-PPCOM, PPKEFU, PPCONSOLE, THIRD_PARTY_KEFU, THIRD_PARTY_CONSOLE
-```
-
-参数
-
-Name                   | Type      | Description
------------------------|-----------|------------
-**conversation_uuid**  | string    | 客服团队uuid
-**page_offset**        | string    | 第几页消息
-page_size              | string    | 一页消息的数目
-since_id               | string    | 最早一条历史消息的id
-max_id                 | string    | 最近一条历史消息的id
-
-
-返回结果（例子）
-```
-{
-   'error_code': 0,
-   'error_code': 'success.',
-   'uri': '/PP_GET_HISTORY_MESSAGE',
-   'total_count': 23,
-   'count': 12,
-   'page_size': 12,
-   'page_offset': 0,
-   'list': [
-       ...
-   ],
-   'max_id': 'xxxx'
-}
-```
-
-
 #### 获取用户信息
 ```
 POST /PP_GET_USER_INFO
