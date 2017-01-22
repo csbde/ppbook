@@ -4,7 +4,7 @@ PPMessage客服平台包括PPConsole，PPKefu，PPCom，PPMessage服务器四部
 
 --------
 
-#### PPKefu, PPConsole, PPCom 与 PPMessage服务器
+#### PPKefu, PPConfig, PPCom 与 PPMessage Server
 
     +--------------------+     3      +-----------------------+      4      +--------------------+
     |  Customer Client   +----------->+        Server         +------------>+   Service Client   |

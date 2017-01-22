@@ -19,7 +19,7 @@ GET https://ppmessage.com/ppauth/auth?state=xxxx&client_id=xxxx&redirect_id=xxxx
 参数              | 说明
 -----------------|-----------
 `state`          | 表示客户端的当前状态，可以指定任意值，`PPMessage`服务器会原封不动地返回这个值
-`client_id`      | 表示客户端的`api_key`(即`kefu api_key`和`console api_key`)
+`client_id`      | 表示客户端的`api_key`(即`kefu api_key`)
 `redirect_uri`   | 表示重定向`URI`，最终获取`token`成功后，PPMessage服务器会把用户导向这个`URI`
 `response_type`  | 表示授权类型，此处为授权码类型，值为`code`
 
@@ -53,8 +53,8 @@ POST https://ppmessage.com/ppauth/token
 参数               | 说明
 ------------------|-------------------------
 `code`            | 你获取的授权码
-`client_id`       | 表示客户端的`api_key`(即`kefu api_key`和`console api_key`)
-`client_secret`   | 表示客户端的`api_secret`(即`kefu api_secret`和`console api_secret`)
+`client_id`       | 表示客户端的`api_key`(即`kefu api_key`)
+`client_secret`   | 表示客户端的`api_secret`(即`kefu api_secret`)
 `redirect_uri`    | 重定向uri, 应该和之前的一致
 `grant_type`      | token 类型, 值为`authorization_code`
 
@@ -79,7 +79,7 @@ POST https://ppmessage.com/ppauth/token
   }
   ```
   
-* `body`: 部分API需要你提供`app_uuid`(即`kefu api_uuid`和`console api_uuid`)，或`user_uuid`(在 **应用授权** 界面输入邮箱和密码的用户)。此时body应包括相应参数。
+* `body`: 部分API需要你提供`app_uuid`(即`kefu api_uuid`)，或`user_uuid`(在 **应用授权** 界面输入邮箱和密码的用户)。此时body应包括相应参数。
   ```
   {
       "app_uuid": "xxxx",
