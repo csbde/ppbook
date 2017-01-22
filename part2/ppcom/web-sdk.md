@@ -8,7 +8,7 @@ Web SDK 帮助开发者在 Web 端集成 PPCom。
 集成 Web SDK 之前你应该在 PPConsole 创建一个客服团队，然后在**团队设置-基本信息**栏获取团队 uuid (下文的app_uuid），之后可以选择**嵌入代码**或者**加载文件**两种方式进行 Web 集成。
 
 #### 嵌入代码
-PPConsole 的**团队设置-应用集成**栏目提供了最简版本的嵌入代码。要在某一个网页中集成 PPCom，只需要复制嵌入代码并将其插入到网页 html 文件的 **body** 标签之中即可。
+PPKefu 的**设置-组件代码**栏目提供了最简版本的嵌入代码。要在某一个网页中集成 PPCom，只需要复制嵌入代码并将其插入到网页 html 文件的 **head** 标签之中即可。
 
 最简版的嵌入代码示例如下，你可以参考下文的 **Web SDK 接口** 修改 window.ppSettings 对象。如果你想要调用其他的接口，请使用下文的**加载文件**方式集成。
 
@@ -23,7 +23,7 @@ window.ppSettings = {
 ```
 
 #### 加载文件
-使用直接加载 Javascript 文件的方法集成 PPCom，能确保你调用任何接口之前，PPCom SDK 已经加载完毕。
+使用直接加载 Javascript 文件的方法集成 PPCom。
 
 方法很简单，只需要将下列代码插入到html文件的**head**标签里，然后就可以在你的 Javascript 程序代码中调用 PPCom SDK接口。具体接口请参考下文的 **Web SDK 接口**。
 
@@ -133,15 +133,13 @@ window.ppSettings = {
 
 #### 使用 Web SDK
 
-当 PPCom 启动时，会根据开发者传入的参数去 PPMessage 服务器创建或获取一个用户（该用户属于PPMessage系统，与开发者网站用户不是一个概念）。如果 PPCom 启动时带着`user_email`参数，则该用户为具名用户，否则为匿名用户。具名用户通过`user_email`将开发者网站用户和 PPMessage 用户关联起来。 
+当 PPCom 启动时，开发者应该根据网站的访客是否已经成为该网站的注册用户来调用 PPCom，如果 PPCom 启动时带着`ent_user_id`参数，则该用户为具名用户，否则为匿名用户。具名用户就是该用户是该网站的注册用户，并且告诉 PPCom 这个访客的 ent user id，这个 id 是网站用来跟踪访客的，不属于 PPMessage。如果没有 ent user id，那么 PPMessage 认为这个访客没有在这个网站上注册，即一个匿名访客。
 
-典型情景：一个有自己的用户系统（支持用户登录）的网站，集成了 PPCom Web SDK。网站用户在网站上可能做出登录，修改头像，修改昵称，退出登录等操作。针对网站用户的不同行为，网站开发者需要调用不同的SDK接口来正确地显示 PPCom。
 
 考虑以下用户行为：
 
 * **网站用户打开网站**
 
-  用户在浏览网站，但是没有登录，此时应该将该用户视为匿名用户，并以匿名用户的身份启动PPCom。开发者可以给匿名用户指定默认名称和默认头像，如果没有指定的话，PPMessage 系统会给匿名用户创建名称（根据用户IP）和头像（随机头像）。PPCom会在浏览器缓存中存储匿名用户信息，除非用户清空浏览器缓存，否则下次打开网站还是会用之前创建的匿名用户启动 PPCom。
   
   如果你想让PPCom在网站一打开就自动出现，只需要创建`window.ppSettings`对象即可，SDK加载完成后会自动以此对象作为参数启动 PPCom。
 
@@ -166,19 +164,17 @@ window.ppSettings = {
   ```
   
 * **网站用户登录**
+
  
-  网站用户登录网站后，开发者需要以具名用户的身份更新PPCom。这样，当网站客服收到网站用户的消息时，就能知道该用户是网站的注册用户。关键在于调用`PP.update`时传入的参数对象里必须包含`user_email`。如果网站支持显示用户名称和用户头像，开发者应该同时传入`user_name`和`user_icon`。如果没有指定的话，PPMessage系统会给该用户创建名称（根据用户IP）和头像（随机头像）。
+  网站用户登录网站后，开发者需要以具名用户的身份更新PPCom。这样，当网站客服收到网站用户的消息时，就能知道该用户是网站的注册用户。
   
   ```javascript
   PP.update({
     app_uuid: 'your-app-uuid',
-    user_email: 'nameduser@test.com',
-    user_name: 'named-user',
-    user_icon: 'http://xxx/named-user/icon.png',
-    language: 'zh-CN'
+    ent_user_id: 123,
+    ent_user_name: 'named-user',
   });
-  ```
-
+ 
 * **网站用户修改自身信息**
 
   网站用户修改了自身信息（显示名称、头像）后，开发者需要告诉 PPCom 更新用户信息。`user_email`标识需要更新的用户。
@@ -192,7 +188,7 @@ window.ppSettings = {
     language: 'en'
   });
   ```
- 
+  
 * **网站用户退出登录**
 
   网站用户退出登录后，开发者需要以匿名用户身份更新 PPCom。之前创建的匿名用户在本地已经缓存，所以此次不会创建新的匿名用户。

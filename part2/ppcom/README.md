@@ -1,10 +1,10 @@
 # PPCom
 
-PPCom是PPMessage的客户端应用，它可以作为聊天组件集成到网页或者移动应用中。
+PPCom 是 PPMessage 的客户端软件，提供开发组件集成到网页或移动应用中。
 
 ------
 
-* [PPCom界面](./interface.md)
-* [集成web-sdk](./web-sdk.md)
-* [集成ios-sdk](./ios-sdk.md)
-* [集成android-sdk](./android-sdk.md)
+* [PPCom 界面](./interface.md)
+* [集成 web-sdk](./web-sdk.md)
+* [集成 ios-sdk](./ios-sdk.md)
+* [集成 android-sdk](./android-sdk.md)
