@@ -12,7 +12,4 @@
     * [集成iOS SDK](part2/ppcom/ios-sdk.md)
     * [集成Android SDK](part2/ppcom/android-sdk.md)
   * [PPKefu](part2/ppkefu/README.md)
-  * [第三方应用](./part2/third-party-app/README.md)
-    * [获取token](./part2/third-party-app/get-token.md)
-    * [API列表](./part2/third-party-app/api/README.md) 
 
