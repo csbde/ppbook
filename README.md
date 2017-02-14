@@ -1,4 +1,4 @@
-# PPMessage 文档
+# PPMessage 中文文档
 
 这本书包含了使用、部署和开发 PPMessage 所需要的文档。
 
