@@ -6,21 +6,7 @@ PPMessage客服平台包括 PPKefu，PPCom，PPMessage服务器。
 
 #### PPKefu, PPConfig, PPCom 与 PPMessage Server
 
-+---------------+     3   +-------------+      4  +--------------+
-|Customer Client+-------->+   Server    +-------->+Service Client|
-|               | message |             | message |              |
-|     [PPCom]   +<--------+ [PPMessage] +<--------+   [PPKefu]   |
-+---------------+     6   +-------------+      5  +--------------+
-                               |    ^
-                               |    |
-                             1 |    | 2
-                               |    |
-                               v    |
-                      +--------+----+---------+
-                      |   Service Management  |
-                      +                       +
-                      |      [PPConfig]       |
-                      +-----------------------+
+![image](how-work.png)
 
 
 1. 通过 PPConfig 初始化 PPMessage 系统
